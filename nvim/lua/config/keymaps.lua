@@ -10,10 +10,16 @@ map({ "n", "i", "v" }, "<C-h>", "<Nop>")
 
 -- Telescope
 local builtin = require("telescope.builtin")
+
 map("n", "<leader>ff", builtin.find_files, { desc = "Telescope find files" })
 map("n", "<leader>fg", builtin.live_grep, { desc = "Telescope live grep" })
 map("n", "<leader>fb", builtin.buffers, { desc = "Telescope buffers" })
 map("n", "<leader>fh", builtin.help_tags, { desc = "Telescope help tags" })
+
+-- Telescope browser
+local telescope = require("telescope")
+telescope.load_extension("file_browser")
+map("n", "<leader>e", telescope.extensions.file_browser.file_browser, { desc = "Telescope file browser" })
 
 -- Splits
 map("n", "<leader>\\", ":vsplit<CR><c-w>l", { noremap = true, silent = true })
@@ -40,9 +46,6 @@ map({ "i", "n" }, "<esc>", "<cmd>noh<cr><esc>", { desc = "Escape and Clear hlsea
 
 -- save file
 map({ "i", "x", "n", "s" }, "<C-s>", "<cmd>w<cr><esc>", { desc = "Save File" })
-
--- Netrw
-map("n", "<leader>e", ":Ex<cr>", { desc = "Open navigator" })
 
 -- Lazygit
 map("n", "<leader>gg", "<cmd>lua require('config.terminal').lazygit_toggle()<CR>", { noremap = true, silent = true })
