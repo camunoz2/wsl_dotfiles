@@ -8,6 +8,39 @@ map("n", "<c-a>", "ggVG")
 map({ "n", "i", "v" }, "<C-l>", "<Nop>")
 map({ "n", "i", "v" }, "<C-h>", "<Nop>")
 
+-- Harpoon
+local harpoon = require("harpoon")
+
+harpoon:setup()
+
+map("n", "<leader>a", function()
+	harpoon:list():add()
+end)
+map("n", "<leader>h", function()
+	harpoon.ui:toggle_quick_menu(harpoon:list())
+end) -- Changed from <C-e> to <leader>h
+
+map("n", "<F1>", function()
+	harpoon:list():select(1)
+end)
+map("n", "<F2>", function()
+	harpoon:list():select(2)
+end)
+map("n", "<F3>", function()
+	harpoon:list():select(3)
+end)
+map("n", "<F4>", function()
+	harpoon:list():select(4)
+end)
+
+-- Toggle previous & next buffers stored within Harpoon list
+map("n", "<S-F1>", function()
+	harpoon:list():prev()
+end)
+map("n", "<S-F2>", function()
+	harpoon:list():next()
+end)
+
 -- Telescope
 local builtin = require("telescope.builtin")
 
@@ -19,7 +52,14 @@ map("n", "<leader>fh", builtin.help_tags, { desc = "Telescope help tags" })
 -- Telescope browser
 local telescope = require("telescope")
 telescope.load_extension("file_browser")
-map("n", "<leader>e", telescope.extensions.file_browser.file_browser, { desc = "Telescope file browser" })
+map("n", "<leader>E", telescope.extensions.file_browser.file_browser, { desc = "Telescope file browser" })
+map("n", "<leader>e", function()
+	telescope.extensions.file_browser.file_browser({ cwd = vim.fn.expand("%:p:h") })
+end, { desc = "Open file browser in current file's directory" })
+
+-- Better navigation
+map("n", "<C-o>", ":bprevious<CR>", { noremap = true, silent = true })
+map("n", "<C-i>", ":bnext<CR>", { noremap = true, silent = true })
 
 -- Splits
 map("n", "<leader>\\", ":vsplit<CR><c-w>l", { noremap = true, silent = true })
