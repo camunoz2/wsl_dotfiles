@@ -8,6 +8,9 @@ case $- in
       *) return;;
 esac
 
+# Tmux sessions
+bind -x '"\C-f": ~/.config/tmux/scripts/tmux-session.sh'
+
 # lua-lang-server
 export PATH="$PATH:/usr/local/share/lua-language-server/bin"
 

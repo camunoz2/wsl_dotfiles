@@ -41,6 +41,12 @@ map("n", "<S-F2>", function()
 	harpoon:list():next()
 end)
 
+-- Code Action
+map("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "Code Action" })
+
+-- Diagnostics
+map("n", "<leader>d", vim.diagnostic.open_float, { noremap = true, silent = true, desc = "Show diagnostics" })
+
 -- Telescope
 local builtin = require("telescope.builtin")
 
@@ -56,10 +62,6 @@ map("n", "<leader>E", telescope.extensions.file_browser.file_browser, { desc = "
 map("n", "<leader>e", function()
 	telescope.extensions.file_browser.file_browser({ cwd = vim.fn.expand("%:p:h") })
 end, { desc = "Open file browser in current file's directory" })
-
--- Better navigation
-map("n", "<C-o>", ":bprevious<CR>", { noremap = true, silent = true })
-map("n", "<C-i>", ":bnext<CR>", { noremap = true, silent = true })
 
 -- Splits
 map("n", "<leader>\\", ":vsplit<CR><c-w>l", { noremap = true, silent = true })
