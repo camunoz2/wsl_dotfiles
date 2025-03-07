@@ -8,9 +8,9 @@ return {
 		formatters_by_ft = {
 			lua = { "stylua" },
 			javascript = { "prettierd" },
-			typescript = { "biome" },
+			typescript = { "prettierd" },
 			javascriptreact = { "prettierd" },
-			typescriptreact = { "biome" },
+			typescriptreact = { "prettierd" },
 			json = { "prettierd" },
 		},
 	},

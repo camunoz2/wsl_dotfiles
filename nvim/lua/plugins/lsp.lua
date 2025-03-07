@@ -35,9 +35,6 @@ return {
 				settings = {},
 			})
 
-			-- Emmet
-			lspconfig.emmet_language_server.setup({})
-
 			-- Golang stup
 			lspconfig.gopls.setup({
 				settings = {

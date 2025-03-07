@@ -143,12 +143,16 @@ if ! shopt -oq posix; then
   fi
 fi
 
+. "$HOME/.cargo/env"
+export PATH="/home/arjeldev/.config/herd-lite/bin:$PATH"
+export PHP_INI_SCAN_DIR="/home/arjeldev/.config/herd-lite/bin:$PHP_INI_SCAN_DIR"
+
 # fnm
 FNM_PATH="/home/arjeldev/.local/share/fnm"
 if [ -d "$FNM_PATH" ]; then
   export PATH="$FNM_PATH:$PATH"
   eval "`fnm env`"
 fi
-. "$HOME/.cargo/env"
-export PATH="/home/arjeldev/.config/herd-lite/bin:$PATH"
-export PHP_INI_SCAN_DIR="/home/arjeldev/.config/herd-lite/bin:$PHP_INI_SCAN_DIR"
+
+# Turso
+export PATH="$PATH:/home/arjeldev/.turso"

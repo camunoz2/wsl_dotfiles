@@ -18,12 +18,12 @@ badd +1 ~/.config
 badd +4 lua/plugins/colorscheme.lua
 badd +12 lua/plugins/telescope.lua
 badd +11 lua/plugins/mini.lua
-badd +10 lua/plugins/formatter.lua
-badd +36 lua/config/keymaps.lua
+badd +13 lua/plugins/formatter.lua
+badd +44 lua/config/keymaps.lua
 badd +1 lua/config/autocmds.lua
 badd +33 lua/config/lazy.lua
 badd +1 ~/.local/state/nvim/lsp.log
-badd +1 lua/plugins/lsp.lua
+badd +31 lua/plugins/lsp.lua
 badd +1 health://
 badd +1 lua/plugins/treesitter.lua
 badd +1 lua/plugins/astro.lua
@@ -33,7 +33,7 @@ badd +17 lua/config/options.lua
 badd +3 lua/plugins/harpoon.lua
 argglobal
 %argdel
-edit lua/config/keymaps.lua
+edit lua/plugins/formatter.lua
 argglobal
 balt lua/plugins/lsp.lua
 setlocal fdm=manual
@@ -46,12 +46,12 @@ setlocal fdn=20
 setlocal fen
 silent! normal! zE
 let &fdl = &fdl
-let s:l = 44 - ((18 * winheight(0) + 18) / 37)
+let s:l = 13 - ((12 * winheight(0) + 18) / 37)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 44
-normal! 014|
+keepjumps 13
+normal! 036|
 lcd ~/.dotfiles/nvim
 tabnext 1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'

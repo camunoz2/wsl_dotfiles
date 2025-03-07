@@ -3,8 +3,12 @@
 # Directories to search for projects
 SEARCH_DIRS=(~/projects/ ~/.config/)
 
-# Get list of directories
-PROJECTS=$(find "${SEARCH_DIRS[@]}" -mindepth 1 -maxdepth 1 -type d 2>/dev/null)
+# Get list of directories (including symbolic links that point to directories)
+PROJECTS=$(find "${SEARCH_DIRS[@]}" -mindepth 1 -maxdepth 1 \( -type d -o -type l \) 2>/dev/null | while read -r dir; do
+    if [ -d "$dir" ] || [ -d "$(readlink -f "$dir")" ]; then
+        echo "$dir"
+    fi
+done)
 
 # Use fzf to select a project
 SELECTED_PROJECT=$(echo "$PROJECTS" | fzf --height 20% --reverse --prompt "Select project: ")
@@ -23,3 +27,4 @@ else
     # If session doesn't exist, create a new one
     tmux new-session -s "$SESSION_NAME" -c "$SELECTED_PROJECT"
 fi
+
